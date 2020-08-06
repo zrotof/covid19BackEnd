@@ -6,6 +6,8 @@ const { Sequelize } = require('sequelize');
 const Database = require('./services/database');
 const cors = require('cors');
 
+const config = require('./config');
+
 //Create an instance of Database class
 var db = new Database();
 

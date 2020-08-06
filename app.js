@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
+
 const express = require('express');
 const Country = require("./models/country");
 const Continant = require("./models/continent");

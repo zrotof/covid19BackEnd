@@ -1,9 +1,11 @@
 const Sequelize = require('sequelize');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const db = new Sequelize('covid19', 'postgres', 'LeKWASSAkwassa001',{
-    host: 'localhost',
-    dialect: 'postgres',
-    port: 5432,
+const db = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD,{
+    host: process.env.DATABASE_HOST_DEV,
+    dialect: process.env.DATABASE_DIALECT,
+    port: process.env.DATABASE_PORT,
 
     pool: {
         max: 5,

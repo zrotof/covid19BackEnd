@@ -12,8 +12,8 @@ class Database{
     }
 
     //Test database connection
-    testdatabase(){
-        db.authenticate()
+    async testdatabase(){
+       await  db.authenticate()
         .then(()=>{
             console.log('Connection has been established successfully...');
         })

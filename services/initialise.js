@@ -16,7 +16,7 @@ class Initilalise{
     //Initialise world's data total cases
     async initialiseWorlds(){
 
-        var link="https://disease.sh/v3/covid-19/all?yesterday=true&allowNull=true";
+        var link=process.env.API_WORLDS;
         
           await axios.get(link)
             .then(response =>{
@@ -75,7 +75,7 @@ class Initilalise{
             ];
             
 
-            //Enregistrement en base de données de la lioste des continants
+            //We store all this continents in our databases
             Continent.bulkCreate(continentsList);
     }
 
@@ -84,7 +84,7 @@ class Initilalise{
      async initialiseCtTotal(){
 
          //This link show globals data group by continants
-         var link="https://disease.sh/v3/covid-19/continents?yesterday=true&sort=cases&allowNull=true";
+         var link=process.env.API_CTS;
         
          //Variable qui contiendra le reponse json
          
@@ -164,7 +164,7 @@ class Initilalise{
 
 
         //This link show globals data group by country
-         var link=  'https://disease.sh/v2/countries?yesterday=true&sort=cases&allowNull=0';
+         var link=  process.env.API_COUNTRIES;
         
          //Variable qui contiendra le reponse json
          var resData 
@@ -227,7 +227,7 @@ class Initilalise{
     async initialiseCyTotal(){
 
         //This link show globals data group by continants
-        var link="https://disease.sh/v3/covid-19/countries?yesterday=true&sort=cases&allowNull=true";
+        var link=process.env.API_CYS;
        
         //Variable qui contiendra le reponse json
         var resData 

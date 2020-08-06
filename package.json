@@ -2,7 +2,7 @@
   "name": "com.samuel.virus",
   "version": "1.0.0",
   "description": "This is the back end for my covid website",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
   },

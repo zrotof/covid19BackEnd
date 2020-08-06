@@ -20,8 +20,7 @@ const app = express();
 
 
 
-//Synchronisation des tables en BDD ...ATTENTION ceci détruit toutesles données
-db.synchronise();
+
 
 
 //ROUTES 
@@ -31,6 +30,11 @@ db.synchronise();
 
         //Test de connection 
         db.testdatabase();
+
+        //Synchronisation des tables en BDD ...ATTENTION ceci détruit toutesles données
+        db.synchronise();
+
+        
         res.send("Le Back-end s'est bien lancé ...");
 
     });

@@ -9,7 +9,9 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: covid19
+  database: ENV['DATABASE_NAME']
   pool: 5
-  username: sample_postgres
-  url: <%= ENV['DATABASE_URL'] %>
+  username: ENV['DATABASE_USER']
+  url: ENV['DATABASE_URL']
+  password: ENV['DATABASE_PASSWORD']
+  host: ENV['DATABASE_HOST']

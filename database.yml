@@ -1,8 +1,6 @@
 # PostgreSQL. Versions 8.2 and up are supported.
 
 development:
-  adapter: postgresql
-  encoding: unicode
 
   # Connect on a TCP socket. Omitted by default since the client uses a
  

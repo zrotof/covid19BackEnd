@@ -7,27 +7,20 @@ const Country = require("./models/country");
 const Continant = require("./models/continent");
 const CtTotal = require("./models/continent");
 const { Sequelize } = require('sequelize');
-const Database = require('./services/database');
 const cors = require('cors');
 
 const config = require('./config');
 
-//Create an instance of Database class
-var db = new Database();
+
 
 const app = express();
-
-    //Test de connection 
-    db.testdatabase();
-
-    //Synchronisation des tables en BDD ...ATTENTION ceci détruit toutesles données
-    //db.synchronise();
 
 
 
 //ROUTES 
 
     app.get('/', (req, res) =>{
+
 
         res.send("Le Back-end s'est bien lancé ...");
 
@@ -48,6 +41,9 @@ const app = express();
     //Routes to initialise total group by countries
     app.use('/cytotals', require('./routes/dbRoutes/cy_totals.js'));
 
+
+    //Routes to test and initialise DB
+    app.use('/database', require('./routes/dbRoutes/database.js'));
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------
@@ -63,13 +59,6 @@ app.use(cors());
 
    app.use('/com.Samuel.sscovid19.api', require('./routes/apiRoutes/api'));
   
-
-
-
-
-    //Route to get all counries
-    //app.use('/countries', require('./routes/countries'));
-
 //How tolisten to the server
 const port = process.env.PORT || 3000
 app.listen(port, '0.0.0.0', ()=>console.log(`Listening on port : ${port} ...`));

@@ -12,4 +12,4 @@ production:
   database: covid19
   pool: 5
   username: sample_postgres
-  url: ENV['DATABASE_URL']
+  url: <%= ENV['DATABASE_URL'] %>

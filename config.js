@@ -6,6 +6,6 @@ console.log("url : >>>>", process.env.DATABASE_URL);
 module.exports = {
 
     "type": "postgres",
-    "url": "postgres://postgres:LeKWASSAkwassa001@localhost:5432/covid19"
+    "url": process.env.DATABASE_URL
 
 }

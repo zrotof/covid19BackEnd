@@ -1,0 +1,20 @@
+# PostgreSQL. Versions 8.2 and up are supported.
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: sample_postgres_development
+  pool: 5
+  username: sample_postgres
+  password:
+
+  # Connect on a TCP socket. Omitted by default since the client uses a
+ 
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: sample_postgres_production
+  pool: 5
+  username: sample_postgres
+  password:
+  url: <%= ENV['DATABASE_URL'] %>

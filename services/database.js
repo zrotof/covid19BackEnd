@@ -16,6 +16,7 @@ class Database{
        await  db.authenticate()
         .then(()=>{
             console.log('Connection has been established successfully...');
+
         })
         .catch(err => console.log('Unables to connect to the database:', err));
     }

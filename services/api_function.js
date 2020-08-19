@@ -53,7 +53,7 @@ class Api{
     }
 
 
-    //Function who gives all data about countires statistics 
+    //Function who gives all data about countries statistics 
     //It giveq a json array of all countries with specifics data about covid19
     async cyAll(){
         

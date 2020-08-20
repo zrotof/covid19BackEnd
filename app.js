@@ -9,9 +9,6 @@ const CtTotal = require("./models/continent");
 const { Sequelize } = require('sequelize');
 const cors = require('cors');
 
-const config = require('./config');
-
-
 
 const app = express();
 

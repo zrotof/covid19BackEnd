@@ -18,10 +18,7 @@ router.get('/World', async(req, res) =>{
 //This route give the acces to continents data
 router.get('/Continents',async(req, res)=>{
 
-    console.log(await apifunc.ct());
     res.send(await apifunc.ct());
-    
-
     
 });
 

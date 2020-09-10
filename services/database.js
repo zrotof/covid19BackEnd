@@ -26,12 +26,17 @@ class Database{
     synchronise(){
         db.authenticate()
         .then(async ()=>{
+
+
+            console.log('Synchronisation en cours ...'),
             await World.sync({ force: true }),
             await Continent.sync({ force: true }),
             await Country.sync({ force: true }),
             await CtTotal.sync({ force: true }),
-            await CyTotal.sync({ force: true })
-        });
+            await CyTotal.sync({ force: true }),
+            console.log('Synchronisation terminée...')
+        })
+        .catch(err => console.log('Unable to synchronisethe database: ', err))
     }
 
 }

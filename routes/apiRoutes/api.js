@@ -19,6 +19,8 @@ router.get('/World', async(req, res) =>{
 router.get('/Continents',async(req, res)=>{
 
     res.send(await apifunc.ct());
+
+    
 });
 
 

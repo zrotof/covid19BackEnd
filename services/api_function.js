@@ -27,12 +27,12 @@ class Api{
     async ct(){
 
 
-        const ctstats = await db.query('SELECT "ctName","ctPopulation", "ctCases", "ctToDayCases", "ctDeaths", "ctToDayDeaths", "ctRecovered","ctToDayRecovered", "ctCritical", "ctDate" FROM "Continents" LEFT JOIN "Ct_Totals" ON "Continents"."id" = "Ct_Totals"."ct_id"', { 
+        const ctstats = await db.query('SELECT "ctName","ctTests","ctPopulation", "ctCases", "ctToDayCases", "ctDeaths", "ctToDayDeaths", "ctRecovered","ctToDayRecovered", "ctCritical", "ctDate" FROM "Continents" LEFT JOIN "Ct_Totals" ON "Continents"."id" = "Ct_Totals"."ct_id"', { 
             type: QueryTypes.SELECT,
             model: Continant,
             mapToModel: true
         });
-
+        
         
         return ctstats;
         
@@ -54,7 +54,7 @@ class Api{
 
 
     //Function who gives all data about countries statistics 
-    //It giveq a json array of all countries with specifics data about covid19
+    //It gives a json array of all countries with specifics data about covid19
     async cyAll(){
         
         const cystatsall = await db.query('SELECT "cyCode" As "id", "cyName", "cyPopulation", "cyFlag", "cyCases", "cyToDayCases", "cyDeaths", "cyToDayDeaths", "cyRecovered", "cyCritical","cyDate", "cyTests" FROM "Countries" LEFT JOIN "Cy_Totals" ON "Countries"."id" = "Cy_Totals"."cy_id" ', { 

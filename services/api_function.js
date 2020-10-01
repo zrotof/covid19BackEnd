@@ -65,6 +65,20 @@ class Api{
         });
         return cystatsall;
     }
+
+
+    //Function who gives all  countries concern by our API
+    //It gives a json array of all countries with specifics data about covid19
+    async allCountries(){
+        
+        const cystatsall = await db.query('SELECT  "cyName" FROM "Countries" ', { 
+            
+            type: QueryTypes.SELECT,
+            model: Country,
+            mapToModel: true
+        });
+        return cystatsall;
+    }
     
 }
 

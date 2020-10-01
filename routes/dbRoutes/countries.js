@@ -9,7 +9,7 @@ const CyTotal = require ('../../models/cy_total');
 
 var init = new Initialise();
 
-//Find all the countries and show them
+//Find all the countries and print them
 router.get('/', async (req,res)=> {
 
     Country.findAll()
@@ -24,6 +24,7 @@ router.get('/', async (req,res)=> {
 }
     
 );
+
 
 
 //Routes to initialise all the countries and store them to the database

@@ -61,8 +61,13 @@ router.get('/Continents',async(req, res)=>{
         res.send(await apifunc.cy(6));
     });
 
-    //This route give an array of all countries data
+    //This route give an array of all countries cases data
     router.get('/Countries/ALL', async(req, res)=>{
         res.send(await apifunc.cyAll());
+    });
+
+    //This route give an array of all countries names 
+    router.get('/Countries/justCountries', async(req, res)=>{
+        res.send(await apifunc.allCountries);
     });
 module.exports = router ;

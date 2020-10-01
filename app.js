@@ -19,26 +19,33 @@ const app = express();
     app.get('/', (req, res) =>{
 
 
+        //Updating DB every 40 miniutes
+        setInterval(() => {
+
+            //Route to initialise world's data
+            app.use('/worlds/setworlds', require('./routes/dbRoutes/worlds.js'));
+
+            
+            //Route to initialise total goup by continent
+            app.use('/cttotals/setcttotals', require('./routes/dbRoutes/ct_totals.js'));
+
+            //Routes to initialise countries
+            app.use('/countries/setcountries', require('./routes/dbRoutes/countries.js'));
+
+            //Routes to initialise total group by countries
+            app.use('cytotals/setcytotals', require('./routes/dbRoutes/cy_totals.js'));
+
+        }, 2400000)
+
+
+
         res.send("Le Back-end s'est bien lancé ...");
 
     });
-    
-    //Route to initialise world's data
-    app.use('/worlds', require('./routes/dbRoutes/worlds.js'));
+
 
     //Route to initialise continents
     app.use('/continents', require('./routes/dbRoutes/continents.js'));
-    
-    //Route to initialise total goup by continent
-    app.use('/cttotals', require('./routes/dbRoutes/ct_totals.js'));
-
-    //Routes to initialise countries
-    app.use('/countries', require('./routes/dbRoutes/countries.js'));
-
-    //Routes to initialise total group by countries
-    app.use('/cytotals', require('./routes/dbRoutes/cy_totals.js'));
-
-
     //Routes to test and initialise DB
     app.use('/database', require('./routes/dbRoutes/database.js'));
 //-----------------------------------------------------------------------------------------------------

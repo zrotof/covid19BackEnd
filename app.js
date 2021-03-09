@@ -12,6 +12,8 @@ const cors = require('cors');
 
 const app = express();
 
+      
+
 
 
 //ROUTES 
@@ -19,35 +21,18 @@ const app = express();
     app.get('/', (req, res) =>{
 
 
-        //Updating DB every 40 miniutes
-        setInterval(() => {
+  //Updating DB every 40 miniutes
+  /* setInterval(function(){
 
-            //Route to initialise world's data
-            app.use('/worlds/setworlds', require('./routes/dbRoutes/worlds.js'));
+    console.log("coucou")
 
-            
-            //Route to initialise total goup by continent
-            app.use('/cttotals/setcttotals', require('./routes/dbRoutes/ct_totals.js'));
-
-            //Routes to initialise countries
-            app.use('/countries/setcountries', require('./routes/dbRoutes/countries.js'));
-
-            //Routes to initialise total group by countries
-            app.use('cytotals/setcytotals', require('./routes/dbRoutes/cy_totals.js'));
-
-        }, 2400000)
-
-
+}, 2000) */
 
         res.send("Le Back-end s'est bien lancé ...");
 
     });
 
 
-    //Route to initialise continents
-    app.use('/continents', require('./routes/dbRoutes/continents.js'));
-    //Routes to test and initialise DB
-    app.use('/database', require('./routes/dbRoutes/database.js'));
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------
@@ -61,8 +46,29 @@ app.use(cors());
 //Routes for the home page of the application 
 
 
+    //Routes to test and initialise DB
+    app.use('/database', require('./routes/dbRoutes/database.js'));
+
+    //Route to initialise world's data
+    app.use('/worlds', require('./routes/dbRoutes/worlds.js'));
+
+
+    //Route to initialise continents
+    app.use('/continents', require('./routes/dbRoutes/continents.js'));
+
+    //Route to initialise total goup by continent
+    app.use('/ctTotals', require('./routes/dbRoutes/ct_totals.js'));
+
+    
+    //Routes to initialise countries
+    app.use('/countries', require('./routes/dbRoutes/countries.js'));
+
+    //Routes to initialise total group by countries
+    app.use('/cyTotals', require('./routes/dbRoutes/cy_totals.js'));
+    
+
    app.use('/com.Samuel.sscovid19.api', require('./routes/apiRoutes/api'));
-  
+
 //How tolisten to the server
 const port = process.env.PORT || 3000
 app.listen(port, '0.0.0.0', ()=>console.log(`Listening on port : ${port} ...`));

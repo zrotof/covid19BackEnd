@@ -6,10 +6,10 @@ const Database = require('../../services/database');
 var db = new Database();
 
 //Find all data about world cases and display them
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     
      //Test de connection 
-    res.send(db.testdatabase());     
+   res.send(db.testdatabase());     
 });
 
 
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/setDB', (req, res) => {
     
     //Synchronisation des tables en BDD ...ATTENTION ceci détruit toutesles données
-    res.send(db.synchronise());
+   res.send(db.synchronise());
 });
 
 module.exports = router;

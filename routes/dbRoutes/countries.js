@@ -12,14 +12,9 @@ var init = new Initialise();
 //Find all the countries and print them
 router.get('/', async (req,res)=> {
 
-    Country.findAll()
-        .then(countries => {
-           // console.log(countries);
-            res.send(countries);
-        })
-        .catch(err => console.log(err))
-
-
+    //Appel de la méthode d'initialisation des pays
+    await init.initialiseCountries()
+    res.send("Initialisation des pays effectuée");
 
 }
     
@@ -28,13 +23,15 @@ router.get('/', async (req,res)=> {
 
 
 //Routes to initialise all the countries and store them to the database
-router.get('/setcountries', (err,res) => {
+router.get('/countriesList', async (err,res) => {
 
-    //Appel de la méthode d'initialisation des pays
-    init.initialiseCountries();
-      
+    await Country.findAll()
+    .then(countries => {
+       // console.log(countries);
+        res.send(countries);
+    })
+    .catch(err => console.log(err))
 
-res.redirect('/countries');
 });
 
 

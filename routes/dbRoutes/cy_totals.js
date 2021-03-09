@@ -10,28 +10,22 @@ var init = new Initialise();
 
 router.get('/', async (req, res) => {
 
+    //Initialise the list of totals cases group by continants
+    await init.initialiseCyTotal();
+    res.send("Initialisation des données globales par continants effectuée");
+});
 
+//Route to initialise all the continants
+router.get('/cyTotalsList', async (req, res) => {
 
-
-    CyTotal.findAll()
+    await CyTotal.findAll()
         .then(totals => {
             res.send(totals);
         })
         .catch(err => console.log(err))
 
-}   
-      
-);
-
-//Route to initialise all the continants
-router.get('/setcytotals', (req, res) => {
-
-    //Initialise the list of totals cases group by continants
-    init.initialiseCyTotal();
-
-
-res.redirect('/cytotals');
-});
+    
+    });
 
 
 module.exports = router;

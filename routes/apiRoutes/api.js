@@ -10,7 +10,6 @@ var apifunc = new Functions();
 
 //this route return the world globals and continent globals data;
 router.get('/World', async(req, res) =>{
-
     res.send(await apifunc.world());
 });
 

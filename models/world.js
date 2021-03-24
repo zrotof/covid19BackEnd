@@ -50,6 +50,10 @@ const World = db.define('World',{
     wDate: {
         type: DataTypes.DATE
 
+    },
+
+    wActive: {
+        type: DataTypes.INTEGER
     }
 
 

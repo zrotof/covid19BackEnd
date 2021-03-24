@@ -21,12 +21,12 @@ class Initilalise{
           await axios.get(link)
             .then(response =>{
                 this.resData= response.data;
-                
+                console.log("Communication avec disease.sh, OK");
             })
-            .catch(error => console.log("Error: ", err));
+            .catch(error => console.log("Error when we try to get World global cases form disease.sh: ", err));
 
             //Création de l'objet world selon le model
-            this.world = { wPopulation: this.resData.population, wCases: this.resData.cases, wToDayCases: this.resData.todayCases, wRecovered: this.resData.recovered, wToDayRecovered: this.resData.todayRecovered, wDeaths: this.resData.deaths, wToDayDeaths: this.resData.todayDeaths, wCritical: this.resData.critical, wAffectedCountries: this.resData.affectedCountries, wTests: this.resData.tests, wDate: new Date(this.resData.updated) };
+            this.world = { wPopulation: this.resData.population, wCases: this.resData.cases, wToDayCases: this.resData.todayCases, wRecovered: this.resData.recovered, wToDayRecovered: this.resData.todayRecovered, wDeaths: this.resData.deaths, wToDayDeaths: this.resData.todayDeaths, wCritical: this.resData.critical, wAffectedCountries: this.resData.affectedCountries, wTests: this.resData.tests, wDate: new Date(this.resData.updated), wActive: this.resData.active };
 
             //Sauvegarde ou Mise à jour en BDD dans la table  World
 
@@ -34,10 +34,18 @@ class Initilalise{
 
             //If not found
             if (world === null) {
-                await World.create(this.world);
+                await World.create(this.world)
+                      .then(console.log("Great, the Table World were not initialise before, but now it's done"))
+                      .catch(err =>{
+                        console.log("Error on setting empty table "+err)
+                      });
                 
             } else {
-                await World.update(this.world, { where: { "id": 1}});
+                await World.update(this.world, { where: { "id": 1}})
+                        .then(console.log("Great, the Table World were initialise before, with this action we have replace old data"))
+                        .catch(err =>{
+                        console.log("Error on setting not empty table "+err)
+                        });;
                 
             }
             

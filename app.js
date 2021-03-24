@@ -69,6 +69,7 @@ app.use(cors());
 
    app.use('/com.Samuel.sscovid19.api', require('./routes/apiRoutes/api'));
 
+
 //How tolisten to the server
 const port = process.env.PORT || 3000
 app.listen(port, '0.0.0.0', ()=>console.log(`Listening on port : ${port} ...`));

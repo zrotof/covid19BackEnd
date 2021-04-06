@@ -21,19 +21,17 @@ const app = express();
 
     app.get('/', (req, res) =>{
 
-
-  //Updating DB every 40 miniutes
-    setInterval(function(){
-        console.log("dans le interval\n");
-
-        resetInitDb.resetAndInitDb();
-
-    }, 2400000) 
-
         res.send("Le Back-end s'est bien lancé ...");
 
     });
 
+    //Updating DB every 40 miniutes
+      setInterval(function(){
+        //console.log("dans le interval\n");
+
+        resetInitDb.resetAndInitDb();
+
+    }, 2400000) 
 
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------

@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
 });
 
 
-
 //Find and retrieve all data about world cases inside the DB
 router.get('/worldslist', async (req, res) => {
 

@@ -30,7 +30,7 @@ router.get('/continentsList', async (req, res) => {
    
 
 //Route to purge the continants data base
-router.get('/delcontinents', (req, res) => 
+/*router.get('/delcontinents', (req, res) => 
     
     Continent.destroy({
         truncate: true 
@@ -38,7 +38,7 @@ router.get('/delcontinents', (req, res) =>
     )
     .then(res.sendStatus(200))
     .catch(err => console.log(err))
-);
+);*/
 
 
 

@@ -8,7 +8,8 @@ const Continant = require("./models/continent");
 const CtTotal = require("./models/continent");
 const { Sequelize } = require('sequelize');
 const cors = require('cors');
-
+const ResetAndInitDb = require('./services/reset-init-db')
+var resetInitDb = new ResetAndInitDb();
 
 const app = express();
 
@@ -22,11 +23,12 @@ const app = express();
 
 
   //Updating DB every 40 miniutes
-  /* setInterval(function(){
+    setInterval(function(){
+        console.log("dans le interval\n");
 
-    console.log("coucou")
+        resetInitDb.resetAndInitDb();
 
-}, 2000) */
+    }, 2400000) 
 
         res.send("Le Back-end s'est bien lancé ...");
 
@@ -47,27 +49,27 @@ app.use(cors());
 
 
     //Routes to test and initialise DB
-    app.use('/database', require('./routes/dbRoutes/database.js'));
+    app.use('/database', require('./routes/dbRoutes/databaseRoutes.js'));
 
     //Route to initialise world's data
-    app.use('/worlds', require('./routes/dbRoutes/worlds.js'));
+    app.use('/worlds', require('./routes/dbRoutes/worldRoutes.js'));
 
 
     //Route to initialise continents
-    app.use('/continents', require('./routes/dbRoutes/continents.js'));
+    app.use('/continents', require('./routes/dbRoutes/continentsRoutes.js'));
 
     //Route to initialise total goup by continent
-    app.use('/ctTotals', require('./routes/dbRoutes/ct_totals.js'));
+    app.use('/ctTotals', require('./routes/dbRoutes/ct_totalsRoutes.js'));
 
     
     //Routes to initialise countries
-    app.use('/countries', require('./routes/dbRoutes/countries.js'));
+    app.use('/countries', require('./routes/dbRoutes/countriesRoutes.js'));
 
     //Routes to initialise total group by countries
-    app.use('/cyTotals', require('./routes/dbRoutes/cy_totals.js'));
+    app.use('/cyTotals', require('./routes/dbRoutes/cy_totalsRoutes.js'));
     
 
-   app.use('/com.Samuel.sscovid19.api', require('./routes/apiRoutes/api'));
+   app.use('/com.Samuel.sscovid19.api', require('./routes/apiRoutes/apiRoutes'));
 
 
 //How tolisten to the server

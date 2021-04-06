@@ -8,17 +8,15 @@ var apifunc = new Functions();
 //Routes to acces to our back-end
 
 
-//this route return the world globals and continent globals data;
+//this route return globals data about the world
 router.get('/World', async(req, res) =>{
     res.send(await apifunc.world());
 });
 
 
-//This route give the acces to continents data
+//This route return global data about continents data
 router.get('/Continents',async(req, res)=>{
-
     res.send(await apifunc.ct());
-    
 });
 
 
@@ -26,19 +24,16 @@ router.get('/Continents',async(req, res)=>{
     
     //North America
     router.get('/Countries/NA',async(req, res) => {
-
         res.send(await apifunc.cy(1));
     });
 
     //South America
     router.get('/Countries/SA',async(req, res) => {
-
         res.send(await apifunc.cy(2));
     });
 
     //Europe
     router.get('/Countries/EU',async(req, res) => {
-
         res.send(await apifunc.cy(3));
     });
 

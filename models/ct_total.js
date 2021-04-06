@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../config/database');
-const Continant = require('./continent');
+const Continant = require('../models/continent');
 
 
 const CtTotal = db.define('Ct_Total',{

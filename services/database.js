@@ -15,28 +15,44 @@ class Database{
     async testdatabase(){
        await  db.authenticate()
         .then(()=>{
-            console.log('Connection has been established successfully...');
+            return 'Connection has been established successfully...';
 
         })
-        .catch(err => console.log('Unables to connect to the database:', err));
+        .catch(err => {return 'Unables to connect to the database:'+ err});
     }
     
 
     //Synchronise models with tables in database
-    synchronise(){
-        db.authenticate()
+    async synchronise(){
+        await db.authenticate()
         .then(async ()=>{
 
 
-            console.log('Synchronisation en cours ...'),
+            console.log('Synchronisation en cours ...\n'),
+
+            console.log('Wolrd reset en cours ...'),
             await World.sync({ force: true }),
+            console.log('Wolrd reset en terminé ...\n'),
+
+            console.log('Continent reset en cours ...'),
             await Continent.sync({ force: true }),
-            await Country.sync({ force: true }),
+            console.log('Continent reset terminé ...\n'),
+
+            console.log('ctTotals reset en cours ...'),
             await CtTotal.sync({ force: true }),
+            console.log('ctTotals reset en terminé ...\n'),
+
+            console.log('countries reset en cours ...'),
+            await Country.sync({ force: true }),
+            console.log('countries reset en terminé ...\n'),
+
+            console.log('cyTotals reset en cours ...'),
             await CyTotal.sync({ force: true }),
+            console.log('cyTotals reset en terminé ...\n'),
+
             console.log('Synchronisation terminée...')
         })
-        .catch(err => console.log('Unable to synchronisethe database: ', err))
+        .catch(err => console.log('Unable to reset database: ', err))
     }
 
 }

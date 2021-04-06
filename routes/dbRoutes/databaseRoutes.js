@@ -6,10 +6,10 @@ const Database = require('../../services/database');
 var db = new Database();
 
 //Find all data about world cases and display them
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
     
      //Test de connection 
-   res.send(db.testdatabase());     
+   res.send(await db.testdatabase());     
 });
 
 

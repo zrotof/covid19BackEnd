@@ -33,6 +33,19 @@ const app = express();
 
     }, 2400000) 
 
+
+    //As heroku sleep every 30 minutes if nothing happen i have to add a delay lower than 30 minutes to avoid heroku sleep
+    //I wil use another set interval that happen every 25 minutes
+    //it would have been more simple if i had reduce the amount of time of the first setInterval
+    //But i want it to be fixed at 40 minutes ...
+    setInterval(function(){
+        //console.log("dans le interval\n");
+
+        console.log("Hey, please don't sleep");
+
+    }, 1500000) 
+
+
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------

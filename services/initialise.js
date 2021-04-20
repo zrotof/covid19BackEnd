@@ -167,7 +167,7 @@ class Initilalise{
 
 
 
-         //Initialiser or insert la table des pays par continant
+         //Initialiser la table des pays par continant
          async initialiseCountries(){
 
 

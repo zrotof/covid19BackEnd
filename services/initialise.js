@@ -48,7 +48,7 @@ class Initilalise{
                         console.log("Error on setting not empty table "+err)
                         });;
                 
-            } /*
+            } */
             
     }
     

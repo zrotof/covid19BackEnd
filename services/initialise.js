@@ -30,25 +30,25 @@ class Initilalise{
 
             //Sauvegarde ou Mise à jour en BDD dans la table  World
 
-            var world = await World.findByPk(1);
+           // var world = await World.findByPk(1);
 
             //If not found
-            if (world === null) {
-                await World.create(this.world)
+   //         if (world === null) {
+                await World.create(this.world);
 /*
                       .then(console.log("Great, the Table World were not initialise before, but now it's done"))
                       .catch(err =>{
                         console.log("Error on setting empty table "+err)
                       });
-                */
-            } else {
+                
+           } else {
                 await World.update(this.world, { where: { "id": 1}})
-        /*                .then(console.log("Great, the Table World were initialise before, with this action we have replace old data"))
+                      .then(console.log("Great, the Table World were initialise before, with this action we have replace old data"))
                         .catch(err =>{
                         console.log("Error on setting not empty table "+err)
-                        });;*/
+                        });;
                 
-            }
+            } /*
             
     }
     

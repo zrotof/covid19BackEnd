@@ -35,17 +35,18 @@ class Initilalise{
             //If not found
             if (world === null) {
                 await World.create(this.world)
+/*
                       .then(console.log("Great, the Table World were not initialise before, but now it's done"))
                       .catch(err =>{
                         console.log("Error on setting empty table "+err)
                       });
-                
+                */
             } else {
                 await World.update(this.world, { where: { "id": 1}})
-                        .then(console.log("Great, the Table World were initialise before, with this action we have replace old data"))
+        /*                .then(console.log("Great, the Table World were initialise before, with this action we have replace old data"))
                         .catch(err =>{
                         console.log("Error on setting not empty table "+err)
-                        });;
+                        });;*/
                 
             }
             

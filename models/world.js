@@ -43,7 +43,7 @@ const World = db.define('World',{
     },
 
     wTests: {
-        type: DataTypes.INTEGER
+        type: DataTypes.BIGINT
     },
 
 

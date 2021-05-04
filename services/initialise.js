@@ -34,7 +34,7 @@ class Initilalise{
 
             //If not found
    //         if (world === null) {
-                await World.create(this.world);
+                 World.create(this.world);
 /*
                       .then(console.log("Great, the Table World were not initialise before, but now it's done"))
                       .catch(err =>{

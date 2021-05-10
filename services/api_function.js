@@ -43,7 +43,7 @@ class Api{
     //of the given continent
     async cy( param ){
         
-        const cystats = await db.query('SELECT "cyCode","cyName","cyPopulation", "cyFlag", "cyCases", "cyToDayCases", "cyDeaths", "cyToDayDeaths", "cyRecovered", "cyCritical","cyDate", "cyTests",cyVaccines FROM "Countries" LEFT JOIN "Cy_Totals" ON "Countries"."id" = "Cy_Totals"."cy_id" WHERE "ct_id" = :ct_id ORDER BY "cyCases" DESC', { 
+        const cystats = await db.query('SELECT "cyCode","cyName","cyPopulation", "cyFlag", "cyCases", "cyToDayCases", "cyDeaths", "cyToDayDeaths", "cyRecovered", "cyCritical","cyDate", "cyTests","cyVaccines" FROM "Countries" LEFT JOIN "Cy_Totals" ON "Countries"."id" = "Cy_Totals"."cy_id" WHERE "ct_id" = :ct_id ORDER BY "cyCases" DESC', { 
             replacements: { ct_id : param },
             type: QueryTypes.SELECT,
             model: Country,
@@ -57,7 +57,7 @@ class Api{
     //It gives a json array of all countries with specifics data about covid19
     async cyAll(){
         
-        const cystatsall = await db.query('SELECT "cyCode" As "id", "cyName", "cyPopulation", "cyFlag", "cyCases", "cyToDayCases", "cyDeaths", "cyToDayDeaths", "cyRecovered", "cyCritical","cyDate", "cyTests" FROM "Countries" LEFT JOIN "Cy_Totals" ON "Countries"."id" = "Cy_Totals"."cy_id" ', { 
+        const cystatsall = await db.query('SELECT "cyCode" As "id", "cyName", "cyPopulation", "cyFlag", "cyCases", "cyToDayCases", "cyDeaths", "cyToDayDeaths", "cyRecovered", "cyCritical", "cyDate", "cyTests", "cyVaccines" FROM "Countries" LEFT JOIN "Cy_Totals" ON "Countries"."id" = "Cy_Totals"."cy_id" ', { 
             
             type: QueryTypes.SELECT,
             model: Country,

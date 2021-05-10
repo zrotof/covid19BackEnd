@@ -10,7 +10,7 @@ const World = db.define('World',{
     
 
     wCases:{
-        type: DataTypes.INTEGER
+        type: DataTypes.BIGINT
     },
     wToDayCases:{
         type: DataTypes.INTEGER
@@ -18,7 +18,7 @@ const World = db.define('World',{
 
 
     wRecovered: {
-        type: DataTypes.INTEGER
+        type: DataTypes.BIGINT
     },
     wToDayRecovered: {
         type: DataTypes.INTEGER
@@ -26,7 +26,7 @@ const World = db.define('World',{
 
 
     wDeaths: {
-        type: DataTypes.INTEGER
+        type: DataTypes.BIGINT
     },
     wToDayDeaths: {
         type: DataTypes.INTEGER
@@ -53,7 +53,7 @@ const World = db.define('World',{
     },
 
     wActive: {
-        type: DataTypes.INTEGER
+        type: DataTypes.BIGINT
     }
 
 

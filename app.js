@@ -8,20 +8,41 @@ const Continant = require("./models/continent");
 const CtTotal = require("./models/continent");
 const { Sequelize } = require('sequelize');
 const cors = require('cors');
-const ResetAndInitDb = require('./services/reset-init-db')
+const ResetAndInitDb = require('./services/reset-init-db');
+const { default: Axios } = require('axios');
 var resetInitDb = new ResetAndInitDb();
+const axios = require('axios');
 
 const app = express();
 
       
-
+let data;
+var slag = [] ;
 
 
 //ROUTES 
 
-    app.get('/', (req, res) =>{
+    app.get('/', async (req, res) =>{
 
-        res.send("Le Back-end s'est bien lancé ...");
+        let tab =[]
+        await axios.get('https://disease.sh/v3/covid-19/vaccine/coverage/countries?lastdays=1&fullData=true')
+           .then(response =>{
+               data = response.data;
+           })
+
+
+           for(var i=0; i < data.length; i++){
+            slag.push(Object.values({
+                "country":data[i].country,
+                "total": data[i].timeline[0].total
+            }));
+        }
+
+        
+
+
+       // res.send("Le Back-end s'est bien lancé ..s.");
+       res.send(slag);
 
     });
 
@@ -29,9 +50,12 @@ const app = express();
       setInterval(function(){
         //console.log("dans le interval\n");
 
+
+        
+
         resetInitDb.resetAndInitDb();
 
-    }, 1500000) 
+    }, 2700000) 
 
 
     //As heroku sleep every 30 minutes if nothing happen i have to add a delay lower than 30 minutes to avoid heroku sleep

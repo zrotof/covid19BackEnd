@@ -45,6 +45,9 @@ const CyTotal = db.define('Cy_Total',{
 
     cyCode:{
         type: DataTypes.STRING
+    },
+    cyVaccines:{
+        type: DataTypes.BIGINT
     }
 
 

@@ -237,6 +237,9 @@ class Initilalise{
 
         //This link show globals data group by continants
         var link=process.env.API_CYS;
+
+        //Variale who will contain vaccines data
+        let vaccines;
        
         //Variable qui contiendra le reponse json
         var resData 
@@ -262,22 +265,61 @@ class Initilalise{
             //We create row if the country don't
                if(country != null){
                    
-                //We found if we already have a row of this country in our cytotal Table
-                var cyTot = await CyTotal.findOne({ where: { cy_id: country.id }});  
+
+                //Retrievement of the tab containing all vaccined for covid grouped by countries
                 
-                this.cy = { cyCases: this.resData[j].cases, cyToDayCases: this.resData[j].todayCases, cyDeaths: this.resData[j].deaths, cyCode: this.resData[j].countryInfo['iso2'], cyToDayDeaths: this.resData[j].todayDeaths, cyRecovered: this.resData[j].recovered, cyToDayRecovered: this.resData[j].todayRecovered, cyCritical: this.resData[j].critical, cyDate: new Date(this.resData[j].updated), cyTests: this.resData[j].tests , cy_id: country.id };
+                await this.getArrayOfVaccinesByCountry()
+                .then (result=>vaccines = result);
 
-                //If there is no row, then we create
-                if( cyTot === null ){
-                    await CyTotal.create(this.cy);
+                //Research of the index of the current country inside our vaccines table
+                //if the country exist then so (index != -1 ) ``
+
+                let index = vaccines.findIndex(vac=> vac.country === country.cyName);
+                //console.log(index)
+
+                //console.log(vaccines[index].total )
+                //If we don't match we set a null value to vaccines attribute
+               if( index == -1){
+                    this.cy = { cyCases: this.resData[j].cases, cyToDayCases: this.resData[j].todayCases, cyDeaths: this.resData[j].deaths, cyCode: this.resData[j].countryInfo['iso2'], cyToDayDeaths: this.resData[j].todayDeaths, cyRecovered: this.resData[j].recovered, cyToDayRecovered: this.resData[j].todayRecovered, cyCritical: this.resData[j].critical, cyDate: new Date(this.resData[j].updated), cyTests: this.resData[j].tests , cyVaccines: null, cy_id: country.id };
                 }
+                //If we found an existing occurance then we set the value of vaccines number corresponding to the correct country
                 else{
-                    //We update
-                    await CyTotal.updated(this.cy, {where: {cy_id: this.cy.cy_id}});
+                    this.cy = { cyCases: this.resData[j].cases, cyToDayCases: this.resData[j].todayCases, cyDeaths: this.resData[j].deaths, cyCode: this.resData[j].countryInfo['iso2'], cyToDayDeaths: this.resData[j].todayDeaths, cyRecovered: this.resData[j].recovered, cyToDayRecovered: this.resData[j].todayRecovered, cyCritical: this.resData[j].critical, cyDate: new Date(this.resData[j].updated), cyTests: this.resData[j].tests , cyVaccines: vaccines[index].total, cy_id: country.id };
                 }
 
+               // console.log(this.cy)
+
+
+                //We finally create the row in the database even ther is an error whle saving
+                   await CyTotal.create(this.cy)
+                    .catch(error => console.log("Error while saving cyTotls", error));
+            
                }
            }  
+        }
+
+
+         async getArrayOfVaccinesByCountry(){
+
+            let data;
+            let slag = [];
+
+            let link = process.env.API_VAC;
+            await axios.get(link)
+            .then(response =>{
+                data = response.data;
+                
+            })
+            .catch(error => console.log(error))
+
+
+            for(var i=0; i < data.length; i++){
+                slag.push({
+                    "country":data[i].country,
+                    "total": data[i].timeline[0].total
+                });
+            }
+            return slag;
         }
 
 }

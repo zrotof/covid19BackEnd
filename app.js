@@ -21,7 +21,7 @@ const app = express();
     app.get('/', async (req, res) =>{
 
 
-       res.send("Le Back-end s'est bien lancé ..s.");
+       res.send("Le Back-end s'est bien lancé ...");
 
     });
 

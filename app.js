@@ -15,62 +15,24 @@ const axios = require('axios');
 
 const app = express();
 
-      
-let data;
-var slag = [] ;
-
 
 //ROUTES 
 
     app.get('/', async (req, res) =>{
 
-        let tab =[]
-        await axios.get('https://disease.sh/v3/covid-19/vaccine/coverage/countries?lastdays=1&fullData=true')
-           .then(response =>{
-               data = response.data;
-           })
 
-
-           for(var i=0; i < data.length; i++){
-            slag.push(Object.values({
-                "country":data[i].country,
-                "total": data[i].timeline[0].total
-            }));
-        }
-
-        
-
-
-       // res.send("Le Back-end s'est bien lancé ..s.");
-       res.send(slag);
+       res.send("Le Back-end s'est bien lancé ..s.");
 
     });
 
-    //Updating DB every 40 miniutes
+    //I will strieve new data every 45 minutes
+    //But i want it to be fixed at 40 minutes ...
       setInterval(function(){
         //console.log("dans le interval\n");
-
-
-        
 
         resetInitDb.resetAndInitDb();
 
     }, 2700000) 
-
-
-    //As heroku sleep every 30 minutes if nothing happen i have to add a delay lower than 30 minutes to avoid heroku sleep
-    //I wil use another set interval that happen every 25 minutes
-    //it would have been more simple if i had reduce the amount of time of the first setInterval
-    //But i want it to be fixed at 40 minutes ...
-    /*
-    setInterval(function(){
-        //console.log("dans le interval\n");
-
-        console.log("Hey, please don't sleep");
-
-    }, 1500000) 
-    */
-
 
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------

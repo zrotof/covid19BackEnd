@@ -50,6 +50,7 @@ app.use(cors());
     //Routes to test and initialise DB
     app.use('/database', require('./routes/dbRoutes/databaseRoutes.js'));
 
+    
     //Route to initialise world's data
     app.use('/worlds', require('./routes/dbRoutes/worldRoutes.js'));
 
@@ -57,12 +58,14 @@ app.use(cors());
     //Route to initialise continents
     app.use('/continents', require('./routes/dbRoutes/continentsRoutes.js'));
 
+    
     //Route to initialise total goup by continent
     app.use('/ctTotals', require('./routes/dbRoutes/ct_totalsRoutes.js'));
 
     
     //Routes to initialise countries
     app.use('/countries', require('./routes/dbRoutes/countriesRoutes.js'));
+
 
     //Routes to initialise total group by countries
     app.use('/cyTotals', require('./routes/dbRoutes/cy_totalsRoutes.js'));

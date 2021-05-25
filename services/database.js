@@ -32,23 +32,23 @@ class Database{
 
             console.log('Wolrd reset en cours ...'),
             await World.sync({ force: true }),
-            console.log('Wolrd reset en terminé ...\n'),
+            console.log('Wolrd reset est terminé ...\n'),
 
             console.log('Continent reset en cours ...'),
             await Continent.sync({ force: true }),
-            console.log('Continent reset terminé ...\n'),
+            console.log('Continent reset est terminé ...\n'),
 
             console.log('ctTotals reset en cours ...'),
             await CtTotal.sync({ force: true }),
-            console.log('ctTotals reset en terminé ...\n'),
+            console.log('ctTotals reset est terminé ...\n'),
 
             console.log('countries reset en cours ...'),
             await Country.sync({ force: true }),
-            console.log('countries reset en terminé ...\n'),
+            console.log('countries reset est terminé ...\n'),
 
             console.log('cyTotals reset en cours ...'),
             await CyTotal.sync({ force: true }),
-            console.log('cyTotals reset en terminé ...\n'),
+            console.log('cyTotals reset est terminé ...\n'),
 
             console.log('Synchronisation terminée...')
         })

@@ -16,7 +16,7 @@ router.get('/', async(req, res) => {
 //Route to initialise all the data for the world
 router.get('/setDB', (req, res) => {
     
-    //Synchronisation des tables en BDD ...ATTENTION ceci détruit toutesles données
+    //Synchronisation des tables en BDD ...ATTENTION ceci détruit toutes les anciennes données
    res.send(db.synchronise());
 });
 

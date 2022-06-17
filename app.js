@@ -1,17 +1,11 @@
+const express = require('express');
+const cors = require('./cors');
+const ResetAndInitDb = require('./services/reset-init-db');
 const dotenv = require('dotenv');
 dotenv.config();
 
 
-const express = require('express');
-const Country = require("./models/country");
-const Continant = require("./models/continent");
-const CtTotal = require("./models/continent");
-const { Sequelize } = require('sequelize');
-const cors = require('cors');
-const ResetAndInitDb = require('./services/reset-init-db');
-const { default: Axios } = require('axios');
 var resetInitDb = new ResetAndInitDb();
-const axios = require('axios');
 
 const app = express();
 
@@ -26,12 +20,8 @@ const app = express();
     });
 
     //I will strieve new data every 45 minutes
-    //But i want it to be fixed at 40 minutes ...
-      setInterval(function(){
-        //console.log("dans le interval\n");
-
-        resetInitDb.resetAndInitDb();
-
+    setInterval(function(){
+      resetInitDb.resetAndInitDb();
     }, 2700000) 
 
 //-----------------------------------------------------------------------------------------------------
@@ -41,10 +31,7 @@ const app = express();
 
 //Over here we will define our routes who will be used by the front-end application
 
-//First we allow call from another UI
-app.use(cors());
-
-//Routes for the home page of the application 
+//We allow request from another serveur
 
 
     //Routes to test and initialise DB
@@ -52,19 +39,19 @@ app.use(cors());
 
     
     //Route to initialise world's data
-    app.use('/worlds', require('./routes/dbRoutes/worldRoutes.js'));
+    app.use('/worlds', cors.corsWithOptions, require('./routes/dbRoutes/worldRoutes.js'));
 
 
     //Route to initialise continents
-    app.use('/continents', require('./routes/dbRoutes/continentsRoutes.js'));
+    app.use('/continents', cors.corsWithOptions, require('./routes/dbRoutes/continentsRoutes.js'));
 
     
     //Route to initialise total goup by continent
-    app.use('/ctTotals', require('./routes/dbRoutes/ct_totalsRoutes.js'));
+    app.use('/ctTotals', cors.corsWithOptions, require('./routes/dbRoutes/ct_totalsRoutes.js'));
 
     
     //Routes to initialise countries
-    app.use('/countries', require('./routes/dbRoutes/countriesRoutes.js'));
+    app.use('/countries',cors.corsWithOptions, require('./routes/dbRoutes/countriesRoutes.js'));
 
 
     //Routes to initialise total group by countries

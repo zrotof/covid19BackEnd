@@ -15,13 +15,10 @@ class Database{
     async testdatabase(){
        await  db.authenticate()
         .then(()=>{
-            console.log("ici")
             return 'Connection has been established successfully...';
 
         })
         .catch(err => {
-            console.log(err);
-
             return 'Unables to connect to the database:'+ err});
     }
     
